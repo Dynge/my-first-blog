@@ -12,3 +12,6 @@ class Post(models.Model):
     def __str__(self):
         return self.title
 
+    def chg_title(self):
+        self.title = new_title
+

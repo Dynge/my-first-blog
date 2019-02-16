@@ -26,10 +26,16 @@ def home(request):
 
 
 def about(request):
-    return render(request, "blog/about.html", {"title": "About"})
+    query = request.GET.get("search_res", None)
+
+    context = {"title": "About"}
+    if query and request.method == "GET":
+        results = Drivers.objects.filter(destination_one=query)
+        context.update({"results": results})
+    return render(request, "blog/about.html", context)
 
 
-def some_view(request):
+def save_view(request):
     # Create the HttpResponse object with the appropriate CSV header.
     response = HttpResponse(content_type="text/csv")
     response["Content-Disposition"] = 'attachment; filename="somefilename.csv"'
@@ -40,3 +46,4 @@ def some_view(request):
         )
 
     return response
+
