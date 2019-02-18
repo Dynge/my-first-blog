@@ -1,5 +1,51 @@
 {% extends "blog/base.html" %} {% block content %}
-
 <h1>About Page</h1>
+<div class="row" id="my-first-div">
+    <div class="col-sm-5">
+        <h2>What Can JavaScript Do?</h2>
+        <p>JavaScript can change HTML attribute values.</p>
+        <p>In this case JavaScript changes the value of the src (source) attribute of an image.</p>
+    </div>
+    <div class="col-sm-7">
+        <button onclick="document.getElementById('myImage').src='pic_bulbon.gif'">Really doesnt work. Should change picture.</button>
+
+        <img id="myImage" src="pic_bulboff.gif" style="width:100px">
+
+        <button onclick="document.getElementById('my-first-div').innerHTML = 'This is gone now '">Remove this div</button>
+    </div>
+</div>
+
+<h2>External JavaScript</h2>
+
+<p id='demo'>A Paragraph.</p>
+
+<button type="button" onclick='newColor("dragme")'>New Color on January</button> {% if posts %}
+<p>This is where i index a specific posts contents. Post 1 Title: {{posts.0.title}} posted {{posts.0.date_posted}} </p> {% endif %}
+<!--objects.<number> indexes the queryset-->
+<div class="form-group">
+    <label for=""></label>
+    <input type="text" class="form-control" name="" id="new-author" aria-describedby="helpId" placeholder="">
+    <small id="helpId" class="form-text text-muted">Bootstrap input Field. Send input to database.</small>
+    <button type="button" class="btn-dark" , id="submit-author">Submit</button>
+</div>
+<!--Dragable items only work on the placement of the page where there is
+information such as paragraphs (or canvas').-->
+<aside draggable="true" id="dragme">
+    January
+</aside>
+<aside draggable="true" id="dragme2">
+    February
+</aside>
+
+
+
+
+
+
+<p id="js_var">JavaScript Variable</p>
+
+<!--Here we import a javascript. We can then use these in the HTML file.-->
+
+
 
 {% endblock content %}

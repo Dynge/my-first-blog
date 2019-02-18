@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import Post
+from django.views.decorators.csrf import csrf_exempt
 import csv
 
 # Create your views here.
@@ -24,14 +25,28 @@ def home(request):
     context = {"posts": Post.objects.all()}
     return render(request, "blog/home.html", context)
 
-
+@csrf_exempt
 def about(request):
-    query = request.GET.get("search_res", None)
-
-    context = {"title": "About"}
-    if query and request.method == "GET":
-        results = Drivers.objects.filter(destination_one=query)
-        context.update({"results": results})
+    
+    context = {
+        "title": "About",
+        "posts": Post.objects.all(),
+        "first_post": Post.objects.filter(id=1),
+    }
+    
+    if request.method == "POST":
+        Post2Update = Post.objects.get(id=request.POST.get('id'))
+        #if request.POST.get('id'):
+        if Post2Update:
+            #Post2Update.id = request.POST.get('id')
+            Post2Update.content = "Wow we actually hit one by random"
+            print(Post2Update)
+            print(request.POST.get('id'))
+            Post2Update.save()
+        #Post2Update.id = request.POST.get("id","")
+        #for post in Posts2Update:
+        #    post.save()
+        
     return render(request, "blog/about.html", context)
 
 

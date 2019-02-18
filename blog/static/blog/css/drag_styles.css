@@ -1,0 +1,17 @@
+#my-first-div {
+    background: rgb(68, 172, 82);
+}
+
+aside {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    /* set these so Chrome doesn't return 'auto' from getComputedStyle */
+    width: 80px;
+    height: 40px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.66);
+    border: 2px solid rgba(0, 0, 0, 0.5);
+    /*rounds the corners*/
+    border-radius: 5px;
+}
